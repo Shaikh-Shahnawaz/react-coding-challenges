@@ -1,9 +1,15 @@
 import React from 'react';
 import cx from 'classnames';
+import { Socket } from 'socket.io-client';
+import initialBottyMessage from '../../../common/constants/initialBottyMessage';
+
 
 const ME = 'me';
 
 export default function Message({ nextMessage, message, botTyping }) {
+
+
+
   return (
     <p
       className={cx(
@@ -17,7 +23,11 @@ export default function Message({ nextMessage, message, botTyping }) {
       )}
       key={message.id}
     >
-      {message.message}
+      {/* {message.message} */}
+
+      {initialBottyMessage}
+      <br/>
+        {message}
     </p>
   );
 }
