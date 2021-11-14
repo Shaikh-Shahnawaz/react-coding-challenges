@@ -51,7 +51,11 @@ function Messages() {
     <div className="messages">
       <Header />
       <div className="messages__list" id="message-list">
+
+        <p>
         {  message.map((ele)=> <Message message={ele} />)   }
+        </p>
+       
 
        
           {/* 
