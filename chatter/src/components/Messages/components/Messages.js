@@ -51,8 +51,8 @@ function Messages() {
     <div className="messages">
       <Header />
       <div className="messages__list" id="message-list">
+        {  message.map((ele)=> <Message message={ele} />)   }
 
-        <Message message={message} />
        
           {/* 
         <p
