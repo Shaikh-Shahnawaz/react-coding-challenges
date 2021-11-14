@@ -26,8 +26,9 @@ export default function Message({ nextMessage, message, botTyping }) {
       {/* {message.message} */}
 
       {initialBottyMessage}
-      <br/>
-        {message}
+     
+      <p>{message}</p>
+        
     </p>
   );
 }

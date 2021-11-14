@@ -8,7 +8,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Message from "./Message";
 import "../styles/_messages.scss";
-
+import ReactScrollToBottom from 'react-scroll-to-bottom'
 import initialBottyMessage from "../../../common/constants/initialBottyMessage";
 
 
@@ -50,7 +50,8 @@ function Messages() {
   return (
     <div className="messages">
       <Header />
-      <div className="messages__list" id="message-list">
+
+      <ReactScrollToBottom className="messages__list" id="message-list">
 
         <p>
         {  message.map((ele)=> <Message message={ele} />)   }
@@ -58,20 +59,9 @@ function Messages() {
        
 
        
-          {/* 
-        <p
-          style={{
-            backgroundColor: "aqua",
-            padding: "5px",
-            textAlign: "right",
-          }}
-        >
-          {" "}
-          {message}{" "}
-        </p> */}
-
         
-      </div>
+      </ReactScrollToBottom>
+
       <Footer
         message={message}
         sendMessage={sendMessage}
