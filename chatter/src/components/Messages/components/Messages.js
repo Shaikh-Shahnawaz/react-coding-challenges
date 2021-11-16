@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import useSound from "use-sound";
 import config from "../../../config";
@@ -20,8 +20,8 @@ const socket = io(config.BOT_SERVER_ENDPOINT, {
 function Messages() {
 
   useEffect(() => {
-    socket.on("bot-message", (message) => {
-    //  initialBottyMessage
+    socket.on("bot-message", (initialBottyMessage) => {
+    
     });
 
   }, []);
@@ -30,7 +30,10 @@ function Messages() {
   const [playReceive] = useSound(config.RECEIVE_AUDIO_URL);
   const { setLatestMessage } = useContext(LatestMessagesContext);
 
-  // ===============my code===============
+
+// =============== [ My code ] ===============
+
+  const emptyInput = useRef(null)
   const [input, setInput] = useState("");
   const [message, setMessage] = useState([]);
 
@@ -41,31 +44,30 @@ function Messages() {
   const sendMessage = () => {
     setMessage([...message,input])
     socket.emit('user-message',message)
+
+    // Ref for clearing the input
+    emptyInput.current.value = ''
   };
 
- useEffect(()=>{
 
- },[])
 
   return (
     <div className="messages">
       <Header />
-
+      
       <ReactScrollToBottom className="messages__list" id="message-list">
 
         <p>
         {  message.map((ele)=> <Message message={ele} />)   }
         </p>
        
-
-       
-        
       </ReactScrollToBottom>
 
       <Footer
         message={message}
         sendMessage={sendMessage}
         onChangeMessage={onChangeMessage}
+        emptyInput={emptyInput}
       />
     </div>
   );
